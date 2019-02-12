@@ -1,24 +1,23 @@
 const sqlite3 = require('sqlite3');
-
+//connect to DB
 let db = new sqlite3.Database("./mydb.sqlite3", (err) => {
     if (err) {
         console.log('Error when creating the database', err)
     } else {
         console.log('Database created!')
-        /* Put code to create table(s) here */
         createTable()
     }
 })
-
+//create table
 const createTable = () => {
     console.log("create database table contacts");
     db.run("CREATE TABLE IF NOT EXISTS employeesDB(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,code TEXT,profession TEXT,  color TEXT,city TEXT,branch TEXT,assigned BOOLEAN)",  insertData);
 }
-
+//inserrt data
 const insertData = () =>{
     console.log("Insert data");
     db.all('SELECT * FROM employeesDB',(err,employees) => {
-      if(employees.length==0){
+      if(employees.length==0){//check if the table is empty and load it with intial data
 
           db.run('INSERT INTO employeesDB (name,code,profession,color,city,branch,assigned) VALUES (?,?,?,?,?,?,?)', ["Kyle Lowry","F100","Drywall Installer","#FF6600","Brampton","Abacus",true]);
           db.run('INSERT INTO employeesDB (name,code,profession,color,city,branch,assigned) VALUES (?,?,?,?,?,?,?)', ["DeMar DeRozan","F101","Drywall Installer","yellow","Brampton", "Pillsworth",false]);
