@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 // const employees = require('./data/employees.json');
-const createInsertDB = require('./data/createTable');
+const createInsertDB = require('./data/createTable'); //intial creates table and insert default data, insert data only when the table is empty and created
 const sqlite3_DB = require('sqlite3').verbose();
 let employeesDB = new sqlite3_DB.Database("./mydb.sqlite3");
 let bodyParser = require('body-parser');
@@ -33,7 +33,7 @@ app.get('/api/employees', cors(corsOptions), (req, res, next) => {
       res.json(employees);
     });
 });
-
+//maxID is not been used anymore
 app.get('/api/maxID', cors(corsOptions), (req, res, next) => {
   employeesDB.all('SELECT MAX(id) as id FROM employeesDB',(err,id) => {
       res.setHeader('Content-Type', 'application/json');
