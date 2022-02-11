@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "ajv": "^6.8.1",
+    "ajv": "^6.12.3",
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.0",
     "convert-css-color-name-to-hex": "^0.1.1",
